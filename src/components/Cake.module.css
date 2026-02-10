@@ -24,27 +24,33 @@
     height: 110px;
     bottom: -10px;
     left: -10px;
-    background-color: #f0f0f0;
+    background: radial-gradient(ellipse at center, #eee 30%, #bdbdbd 70%);
     position: absolute;
     border-radius: 50%;
-    box-shadow: 0 5px 0 #bbb, 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 0 #9e9e9e, 0 10px 40px rgba(0, 0, 0, 0.15);
     opacity: 0;
     transform: scale(0);
     animation: plateAppear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 0.5s;
 }
 
+/* Realistic Dark Chocolate Sponge */
 .layer {
     position: absolute;
     display: block;
     width: 250px;
     height: 100px;
     border-radius: 50%;
-    background-color: #795548;
-    /* cake-color */
-    box-shadow: 0 2px 0px #6d4c41, 0 4px 0px #5d4037, 0 6px 0px #4e342e;
+    /* Rich dark chocolate color with texture gradient */
+    background: radial-gradient(ellipse at center, #5d4037 30%, #3e2723 90%);
+    box-shadow:
+        0 2px 0px #3e2723,
+        0 4px 0px #2a1814,
+        0 6px 0px #1b0f0b,
+        0 20px 40px rgba(0, 0, 0, 0.4);
     opacity: 0;
 }
 
+/* Use slightly different shades/gradients for realism */
 .layerBottom {
     top: 85px;
     z-index: 1;
@@ -54,13 +60,15 @@
 .layerMiddle {
     top: 50px;
     z-index: 2;
+    background: radial-gradient(ellipse at center, #6d4c41 30%, #4e342e 90%);
     animation: dropIn 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards 1.8s, bounceFinish 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 2.8s;
 }
 
 .layerTop {
     top: 15px;
     z-index: 3;
-    background: linear-gradient(to right, #8d6e63, #795548);
+    /* Top layer matches icing blend */
+    background: radial-gradient(ellipse at center, #795548 30%, #5d4037 100%);
     animation: dropIn 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards 2.4s, bounceFinish 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 3.4s;
 }
 
@@ -81,7 +89,6 @@
     }
 }
 
-/* Add a dummy keyframe for bounceFinish to prevent errors if it was intended to be separate */
 @keyframes bounceFinish {
     0% {
         transform: translateY(0);
@@ -108,6 +115,7 @@
     }
 }
 
+/* Glossy Chocolate Ganache Icing */
 .icing {
     position: absolute;
     top: 15px;
@@ -115,18 +123,30 @@
     width: 250px;
     height: 100px;
     border-radius: 50%;
-    background-color: #fce4ec;
-    /* icing-color */
+    /* Dark glossy ganache */
+    background: radial-gradient(ellipse at 40% 40%, #5d4037 0%, #3e2723 60%, #291815 100%);
     z-index: 4;
     opacity: 0;
     transform: scale(0);
+    box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.1);
     animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 3.6s;
+}
+
+/* Add a shiny reflection to the icing */
+.icing:after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    width: 100px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    transform: rotate(-10deg);
 }
 
 .drip {
     position: absolute;
-    background-color: #fce4ec;
-    /* icing-color */
     width: 30px;
     height: 40px;
     border-radius: 0 0 15px 15px;
@@ -134,7 +154,22 @@
     top: 60px;
     opacity: 0;
     height: 0;
+    /* Matching ganache color with slight gradient for volume */
+    background: linear-gradient(to right, #3e2723, #4e342e, #3e2723);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     animation: dripGrow 1s ease-out forwards 3.8s;
+}
+
+/* Specular highlight on drips */
+.drip:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    width: 4px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
 }
 
 .drip1 {
@@ -154,21 +189,132 @@
     animation-delay: 4.0s;
 }
 
+/* Cherry - Red Glacé style */
+.cherry {
+    width: 28px;
+    height: 28px;
+    /* Deep red shiny cherry */
+    background: radial-gradient(circle at 35% 35%, #ff5252, #8b0000);
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    left: 112px;
+    z-index: 5;
+    opacity: 0;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.4);
+    animation: cherryDrop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 4.3s;
+}
+
+.cherry:before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    /* Highlight */
+    position: absolute;
+    top: 5px;
+    left: 6px;
+}
+
+.cherry:after {
+    content: "";
+    width: 14px;
+    height: 18px;
+    border-radius: 50%;
+    border-left: 2px solid #558b2f;
+    /* Stem */
+    position: absolute;
+    top: -12px;
+    left: 13px;
+    transform: rotate(10deg);
+}
+
+@keyframes cherryDrop {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px) scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Gold/Silver Dragee Sprinkles for elegance */
+.sprinkles {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    width: 170px;
+    height: 60px;
+    z-index: 5;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards 4.0s;
+}
+
+.sprinkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff9c4, #fbc02d);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.sprinkle:nth-child(1) {
+    top: 10px;
+    left: 20px;
+}
+
+.sprinkle:nth-child(2) {
+    top: 30px;
+    left: 80px;
+    width: 5px;
+    height: 5px;
+    background: radial-gradient(circle at 30% 30%, #e1f5fe, #0288d1);
+}
+
+.sprinkle:nth-child(3) {
+    top: 10px;
+    left: 140px;
+}
+
+.sprinkle:nth-child(4) {
+    top: 40px;
+    left: 120px;
+    width: 7px;
+    height: 7px;
+    background: radial-gradient(circle at 30% 30%, #fce4ec, #e91e63);
+}
+
+.sprinkle:nth-child(5) {
+    top: 50px;
+    left: 40px;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
 .candle {
-    background-color: white;
-    /* candle-color */
+    background: linear-gradient(to right, #cfd8dc, #eceff1, #cfd8dc);
     width: 20px;
     height: 70px;
     border-radius: 10px 10px 2px 2px;
     position: absolute;
-    top: -40px;
+    top: -45px;
     left: 115px;
-    z-index: 5;
-    box-shadow: inset -5px 0 0 rgba(0, 0, 0, 0.1);
+    z-index: 4;
+    /* Behind cherry */
+    box-shadow: inset -5px 0 0 rgba(0, 0, 0, 0.05);
     opacity: 0;
     transform: scaleY(0);
     transform-origin: bottom center;
-    animation: growUp 0.8s ease-out forwards 4.2s;
+    animation: growUp 0.8s ease-out forwards 4.6s;
 }
 
 .candle:before {
@@ -178,22 +324,21 @@
     left: 9px;
     width: 2px;
     height: 10px;
-    background-color: black;
+    background-color: #3e2723;
 }
 
 .flame {
     position: absolute;
-    background-color: #ff9800;
-    /* flame-color */
+    background: radial-gradient(ellipse at bottom, #ffff00 0%, #ff9800 60%, #ff5722 100%);
     width: 20px;
     height: 30px;
     border-radius: 50% 50% 20% 20%;
     top: -35px;
     left: 0;
-    box-shadow: 0 0 10px #ff9800, 0 0 20px yellow;
+    box-shadow: 0 0 10px #ff9800, 0 0 20px #ffea00;
     transform-origin: center bottom;
     opacity: 0;
-    animation: flicker 1s infinite alternate, flameAppear 0.5s ease-out forwards 4.8s;
+    animation: flicker 1s infinite alternate, flameAppear 0.5s ease-out forwards 5.2s;
 }
 
 @keyframes scaleIn {
@@ -236,20 +381,24 @@
     25% {
         transform: scale(1.1) rotate(2deg);
         opacity: 1;
+        filter: blur(0px);
     }
 
     50% {
         transform: scale(0.9) rotate(-1deg);
         opacity: 0.8;
+        filter: blur(1px);
     }
 
     75% {
         transform: scale(1.2) rotate(3deg);
         opacity: 1;
+        filter: blur(0px);
     }
 
     100% {
         transform: scale(1) rotate(-3deg);
         opacity: 0.9;
+        filter: blur(1px);
     }
 }
