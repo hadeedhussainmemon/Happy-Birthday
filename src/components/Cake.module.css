@@ -1,0 +1,255 @@
+.cake {
+    position: relative;
+    width: 250px;
+    height: 200px;
+    margin-bottom: 20px;
+    /* Continuous floating after entrance */
+    animation: float 3s ease-in-out infinite 5.5s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.plate {
+    width: 270px;
+    height: 110px;
+    bottom: -10px;
+    left: -10px;
+    background-color: #f0f0f0;
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 5px 0 #bbb, 0 10px 40px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: scale(0);
+    animation: plateAppear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 0.5s;
+}
+
+.layer {
+    position: absolute;
+    display: block;
+    width: 250px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #795548;
+    /* cake-color */
+    box-shadow: 0 2px 0px #6d4c41, 0 4px 0px #5d4037, 0 6px 0px #4e342e;
+    opacity: 0;
+}
+
+.layerBottom {
+    top: 85px;
+    z-index: 1;
+    animation: dropIn 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards 1.2s, bounceFinish 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 2.2s;
+}
+
+.layerMiddle {
+    top: 50px;
+    z-index: 2;
+    animation: dropIn 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards 1.8s, bounceFinish 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 2.8s;
+}
+
+.layerTop {
+    top: 15px;
+    z-index: 3;
+    background: linear-gradient(to right, #8d6e63, #795548);
+    animation: dropIn 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards 2.4s, bounceFinish 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 3.4s;
+}
+
+@keyframes dropIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-300px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add a dummy keyframe for bounceFinish to prevent errors if it was intended to be separate */
+@keyframes bounceFinish {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes plateAppear {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.icing {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 250px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #fce4ec;
+    /* icing-color */
+    z-index: 4;
+    opacity: 0;
+    transform: scale(0);
+    animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 3.6s;
+}
+
+.drip {
+    position: absolute;
+    background-color: #fce4ec;
+    /* icing-color */
+    width: 30px;
+    height: 40px;
+    border-radius: 0 0 15px 15px;
+    z-index: 4;
+    top: 60px;
+    opacity: 0;
+    height: 0;
+    animation: dripGrow 1s ease-out forwards 3.8s;
+}
+
+.drip1 {
+    left: 40px;
+    height: 50px;
+}
+
+.drip2 {
+    left: 110px;
+    height: 40px;
+    animation-delay: 3.9s;
+}
+
+.drip3 {
+    left: 180px;
+    height: 55px;
+    animation-delay: 4.0s;
+}
+
+.candle {
+    background-color: white;
+    /* candle-color */
+    width: 20px;
+    height: 70px;
+    border-radius: 10px 10px 2px 2px;
+    position: absolute;
+    top: -40px;
+    left: 115px;
+    z-index: 5;
+    box-shadow: inset -5px 0 0 rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: bottom center;
+    animation: growUp 0.8s ease-out forwards 4.2s;
+}
+
+.candle:before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 9px;
+    width: 2px;
+    height: 10px;
+    background-color: black;
+}
+
+.flame {
+    position: absolute;
+    background-color: #ff9800;
+    /* flame-color */
+    width: 20px;
+    height: 30px;
+    border-radius: 50% 50% 20% 20%;
+    top: -35px;
+    left: 0;
+    box-shadow: 0 0 10px #ff9800, 0 0 20px yellow;
+    transform-origin: center bottom;
+    opacity: 0;
+    animation: flicker 1s infinite alternate, flameAppear 0.5s ease-out forwards 4.8s;
+}
+
+@keyframes scaleIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes dripGrow {
+    0% {
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes growUp {
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes flameAppear {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes flicker {
+    0% {
+        transform: scale(1) rotate(-2deg);
+        opacity: 0.9;
+    }
+
+    25% {
+        transform: scale(1.1) rotate(2deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(0.9) rotate(-1deg);
+        opacity: 0.8;
+    }
+
+    75% {
+        transform: scale(1.2) rotate(3deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1) rotate(-3deg);
+        opacity: 0.9;
+    }
+}
